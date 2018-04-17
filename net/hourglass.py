@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
-from net_util import hourglassNetSuperparams
+from superparams import hourglassNetSuperparams
+
 
 def down_layer(ch_in, ch_out, kernel_size, stride, padding, mode='conv'):
     if mode == 'conv':
@@ -8,6 +9,7 @@ def down_layer(ch_in, ch_out, kernel_size, stride, padding, mode='conv'):
                     nn.Conv2d(ch_in, ch_out, kernel_size, stride, padding),
                     nn.BatchNorm2d(ch_out),
                     nn.ReLU())
+
 
 def up_layer(ch_in, ch_out, kernel_size, stride, padding, act = 'relu',mode='deconv'):
     if (mode == 'deconv'):
@@ -19,7 +21,8 @@ def up_layer(ch_in, ch_out, kernel_size, stride, padding, act = 'relu',mode='dec
             return nn.Sequential(nn.ConvTranspose2d(ch_in, ch_out, kernel_size, stride, padding),
                    nn.BatchNorm2d(ch_out),
                    nn.Sigmoid())
-    
+
+
 def skip_layer(ch_in, ch_out, kernel_size, stride, padding, mode='conv'):
     if mode == 'conv':
         return nn.Sequential(

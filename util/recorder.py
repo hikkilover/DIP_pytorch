@@ -1,9 +1,8 @@
-import time
 import os
-import torch
-import torchvision
-from PIL import Image
+import time
 import numpy as np
+from PIL import Image
+import torchvision
 
 class PathError(BaseException):
     def __init__(self, mesg="raise a PathError"):
