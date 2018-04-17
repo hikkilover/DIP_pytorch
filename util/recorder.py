@@ -2,7 +2,7 @@ import os
 import time
 import numpy as np
 from PIL import Image
-import torchvision
+# import torchvision
 
 class PathError(BaseException):
     def __init__(self, mesg="raise a PathError"):
@@ -74,16 +74,16 @@ class experimentalRecord(record):
 
     def add_image(self, image, imageName,
                   message="This is a lazy person, leave no message for the image.",
-                  mode="TORCH_GPU_TENSOR"):
-        if mode == "TORCH_GPU_TENSOR":
-            tensor = image.view(image.shape[1:])
-            tensor = tensor.cpu()
-            tensor_to_pil = torchvision.transforms.Compose([torchvision.transforms.ToPILImage()])
-            pil = tensor_to_pil(tensor)
-        elif mode == "NP":
+                  mode="NP"):
+        if mode == "NP":
             image_uint8 = (np.squeeze(image).transpose(1, 2, 0) * 255).astype(np.uint8)
             pil = Image.fromarray(image_uint8, mode='RGB')
-
+#        elif mode == "TORCH_GPU_TENSOR":
+#            tensor = image.view(image.shape[1:])
+#            tensor = tensor.cpu()
+#            tensor_to_pil = torchvision.transforms.Compose([torchvision.transforms.ToPILImage()])
+#            pil = tensor_to_pil(tensor)
+            
         filename = self.dirPath + imageName
         pil.save(filename)
 

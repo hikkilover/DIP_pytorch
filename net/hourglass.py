@@ -30,9 +30,9 @@ def skip_layer(ch_in, ch_out, kernel_size, stride, padding, mode='conv'):
                     nn.BatchNorm2d(ch_out),
                     nn.ReLU())
 
-class hourglass_network(nn.Module):
+class hourglassNetwork(nn.Module):
     def __init__(self, json, ch_in=3):
-        super(hourglass_network, self).__init__()
+        super(hourglassNetwork, self).__init__()
 
         self.NSP = hourglassNetSuperparams(json)
         # bulid down layers
