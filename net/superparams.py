@@ -22,5 +22,6 @@ class hourglassNetSuperparams(netSuperparams):
         assert set(rowDict.keys()) == hnet_params_set
         for key in rowDict.keys():
             self.__dict__[key] = rowDict[key]
-        assert len(self.down_layers_kernels) - 1 == len(self.up_layers_kernels)
+        # assert len(self.down_layers_kernels) - 1 == len(self.up_layers_kernels)
         assert len(self.skip_layers_kernels) == len(self.up_layers_kernels)
+        self.depth = len(self.skip_layers_kernels)
