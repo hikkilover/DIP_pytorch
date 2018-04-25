@@ -1,0 +1,9 @@
+{
+    "layers_kernels" : {
+		"l1" : 128,
+		"l2" : 64, 
+		"l3" : 32, 
+		"l4" : 16},
+	"mode" : "conv",
+	"kernels_size" : 3
+}
