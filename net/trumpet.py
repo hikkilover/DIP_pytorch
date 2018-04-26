@@ -7,11 +7,25 @@ def basic_layer(ch_in, ch_out, kernel_size, stride, mode='conv'):
     if mode == 'conv':
         to_pad =  int((kernel_size - 1)/2)
         return nn.Sequential(
-                    nn.Conv2d(ch_in, ch_out, kernel_size, stride, padding=to_pad),
-                    nn.BatchNorm2d(ch_out),
-                    nn.ReLU(),
-                    nn.Upsample(scale_factor=2, mode='bilinear'))
+            nn.Conv2d(ch_in, ch_out, kernel_size, stride, padding=to_pad),
+            nn.BatchNorm2d(ch_out),
+            nn.LeakyReLU(0.2),
+            nn.Conv2d(ch_out, ch_out, kernel_size, 1, to_pad),
+            nn.BatchNorm2d(ch_out),
+            nn.LeakyReLU(0.2),
+            nn.Upsample(scale_factor=2, mode='bilinear'))
 
+
+def output_layer(ch_in, ch_out, kernel_size, stride, mode= 'conv'):
+     if mode == 'conv':
+        to_pad =  int((kernel_size - 1)/2)
+        return nn.Sequential(
+            nn.Conv2d(ch_in, ch_out, kernel_size, stride, padding=to_pad),
+            nn.BatchNorm2d(ch_out),
+            nn.LeakyReLU(0.2),
+            nn.Conv2d(ch_out, ch_out, kernel_size, 1, to_pad),
+            nn.BatchNorm2d(ch_out),
+            nn.Sigmoid())
     
 class trumpetNetwork(nn.Module):
     def __init__(self, json, ch_in=3, ch_out=3):
@@ -25,8 +39,8 @@ class trumpetNetwork(nn.Module):
             ch_pre = value
 
         # build out layer
-        self.out =  basic_layer(ch_pre, ch_out, self.NSP.kernels_size, stride=1, mode='conv')
-
+        self.out =  output_layer(ch_pre, ch_out, self.NSP.kernels_size, stride=1, mode='conv')
+        
     def forward(self, input):
         feature = {'input' : input}
         pre_key = 'input'

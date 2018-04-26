@@ -58,7 +58,7 @@ def skip_layer(ch_in, ch_out, kernel_size, stride, mode='conv'):
 
 def output_layer(ch_in, ch_out):
     return nn.Sequential(
-        nn.Conv2d(ch_in, ch_out, 1, 1, padding=0),
+        nn.Conv2d(ch_in, ch_out, 3, 1, padding=1),
         nn.BatchNorm2d(ch_out),
         nn.Sigmoid())
 

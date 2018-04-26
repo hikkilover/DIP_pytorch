@@ -5,5 +5,5 @@
 		"l3" : 32, 
 		"l4" : 16},
 	"mode" : "conv",
-	"kernels_size" : 3
+	"kernels_size" : 5
 }
