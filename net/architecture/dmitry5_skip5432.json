@@ -1,0 +1,27 @@
+{
+	"down_mode" : "dmitry",
+	"down_layers_kernels" : {
+		"d1" : 128, 
+		"d2" : 128, 
+		"d3" : 128, 
+		"d4" : 128, 
+		"d5" : 128},
+	"down_kernels_size" :  3,
+	"up_mode" : "dmitry",
+	"up_layers_kernels" : {
+		"u5" : 128, 
+		"u4" : 128, 
+		"u3" : 128, 
+		"u2" : 128, 
+		"u1" : 128},
+	"up_kernels_size" : 3,
+	"skip_mode" : "dmitry",
+	"skip_layers_kernels" : {
+		"s1" : 0,
+		"s2" : 4, 
+		"s3" : 4, 
+		"s4" : 4, 
+		"s5" : 4},
+	"skip_kernels_size" : 1,
+	"name" : "dmitry5_skip5432"
+}
